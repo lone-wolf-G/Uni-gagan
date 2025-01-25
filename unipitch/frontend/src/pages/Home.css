@@ -1,0 +1,50 @@
+.home-container {
+    position: relative;
+    height: 100vh;
+    width: 100%;
+    background: linear-gradient(135deg, #282c34, #61dafb);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    overflow: hidden;
+  }
+  
+  canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+  
+  .home-content {
+    position: absolute;
+    z-index: 2;
+    text-align: center;
+    padding: 2rem;
+  }
+  
+  .home-content h1 {
+    font-size: 3rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+  }
+  
+  .home-content p {
+    font-size: 1.5rem;
+    margin-top: 0.5rem;
+    line-height: 1.6;
+  }
+
+  button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #61dafb;
+    border: none;
+    color: black;
+    font-size: 16px;
+    cursor:pointer;
+    border-radius: 5px;
+  }
+  
