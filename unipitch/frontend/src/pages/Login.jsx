@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { loginUser } from "../services/authService"; // Auth service for API call
 import { Link, useNavigate } from "react-router-dom";
+import "./Login.css"; // Import external CSS for better styling
 
 const Login = () => {
     const [formData, setFormData] = useState({
@@ -16,10 +17,13 @@ const Login = () => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
     };
 
+    const [loading, setLoading] = useState(false);
+
     // Handle form submission
     const handleSubmit = async (e) => {
         e.preventDefault();
         setError(null); // Clear previous errors
+        setLoading(true); // Show loading indicator
         try {
             const { token } = await loginUser(formData); // Call the auth service
             alert("Login successful!");
@@ -28,14 +32,16 @@ const Login = () => {
         } catch (error) {
             console.error("Login error:", error.message); // Log error for debugging
             setError(error.message || "Invalid credentials. Please try again.");
+        }finally {
+            setLoading(false);
         }
     };
 
     return (
-        <div style={{ textAlign: "center", padding: "20px" }}>
+        <div className="login-container">
             <h2>Login</h2>
             <form onSubmit={handleSubmit}>
-                <div style={{ marginBottom: "10px" }}>
+                <div className="input-container">
                     <input
                         type="email"
                         name="email"
@@ -43,10 +49,9 @@ const Login = () => {
                         value={formData.email}
                         onChange={handleChange}
                         required
-                        style={{ padding: "8px", width: "250px" }}
                     />
                 </div>
-                <div style={{ marginBottom: "10px" }}>
+                <div className="input-container">
                     <input
                         type="password"
                         name="password"
@@ -54,24 +59,23 @@ const Login = () => {
                         value={formData.password}
                         onChange={handleChange}
                         required
-                        style={{ padding: "8px", width: "250px" }}
                     />
                 </div>
-                {error && <p style={{ color: "red" }}>{error}</p>}
-                <button type="submit" style={{ padding: "10px 20px" }}>Login</button>
+                {error && <p className="error-message">{error}</p>}
+                <button type="submit">Login</button>
             </form>
-            <p>
-                Forgot your password?{" "}
-                <Link to="/forgot-password" style={{ color: "blue", textDecoration: "underline" }}>
-                    Reset it here
-                </Link>
-            </p>
-            <p>
-                Don't have an account?{" "}
-                <Link to="/register" style={{ color: "blue", textDecoration: "underline" }}>
-                    Create Account
-                </Link>
-            </p>
+
+            {/* Links for forgot password and creating an account */}
+            <div className="links-container">
+                <p className="forgot-password-link">
+                    Forgot your password?{" "}
+                    <Link to="/forgot-password">Reset it here</Link>
+                </p>
+                <p className="create-account-link">
+                    Don't have an account?{" "}
+                    <Link to="/register">Create Account</Link>
+                </p>
+            </div>
         </div>
     );
 };

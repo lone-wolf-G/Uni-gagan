@@ -78,3 +78,11 @@ body {
 .register-container p a:hover {
     text-decoration: underline;
 }
+
+.register-container input:invalid {
+    border-color: red;
+}
+.register-container input:valid {
+    border-color: green;
+}
+

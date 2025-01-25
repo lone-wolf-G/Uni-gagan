@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import "./ResetPassword.css"; // Import the CSS file
 
 const ResetPassword = () => {
     const [formData, setFormData] = useState({
@@ -28,45 +29,36 @@ const ResetPassword = () => {
     };
 
     return (
-        <div style={{ textAlign: "center", padding: "20px" }}>
+        <div className="reset-password-container">
             <h2>Reset Password</h2>
             <form onSubmit={handleSubmit}>
-                <div style={{ marginBottom: "10px" }}>
-                    <input
-                        type="email"
-                        name="email"
-                        placeholder="Enter your email"
-                        value={formData.email}
-                        onChange={handleChange}
-                        required
-                        style={{ padding: "8px", width: "250px" }}
-                    />
-                </div>
-                <div style={{ marginBottom: "10px" }}>
-                    <input
-                        type="text"
-                        name="otp"
-                        placeholder="Enter OTP"
-                        value={formData.otp}
-                        onChange={handleChange}
-                        required
-                        style={{ padding: "8px", width: "250px" }}
-                    />
-                </div>
-                <div style={{ marginBottom: "10px" }}>
-                    <input
-                        type="password"
-                        name="newPassword"
-                        placeholder="Enter new password"
-                        value={formData.newPassword}
-                        onChange={handleChange}
-                        required
-                        style={{ padding: "8px", width: "250px" }}
-                    />
-                </div>
-                {message && <p style={{ color: "green" }}>{message}</p>}
-                {error && <p style={{ color: "red" }}>{error}</p>}
-                <button type="submit" style={{ padding: "10px 20px" }}>Reset Password</button>
+                <input
+                    type="email"
+                    name="email"
+                    placeholder="Enter your email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    required
+                />
+                <input
+                    type="text"
+                    name="otp"
+                    placeholder="Enter OTP"
+                    value={formData.otp}
+                    onChange={handleChange}
+                    required
+                />
+                <input
+                    type="password"
+                    name="newPassword"
+                    placeholder="Enter new password"
+                    value={formData.newPassword}
+                    onChange={handleChange}
+                    required
+                />
+                {message && <p className="success-message">{message}</p>}
+                {error && <p className="error-message">{error}</p>}
+                <button type="submit">Reset Password</button>
             </form>
         </div>
     );

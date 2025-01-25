@@ -17,6 +17,7 @@ const Register = () => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
     };
 
+    const [loading, setLoading] = useState(false);
     const handleSubmit = async (e) => {
         e.preventDefault();
         setError(null);
@@ -36,6 +37,8 @@ const Register = () => {
         } catch (error) {
             // Handle errors from the backend
             setError(error.response?.data?.message || "Registration failed!");
+        }finally {
+        setLoading(false);
         }
     };
 

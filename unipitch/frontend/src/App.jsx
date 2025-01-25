@@ -11,11 +11,18 @@ import Register from "./pages/Register"; // Import the Register component
 import ForgotPassword from "./pages/ForgotPassword";
 import ResetPassword from "./pages/ResetPassword";
 
+import Hero from './components/Hero';
+import Highlights from './components/Highlights';
+import Features from './components/Features';
+import HowItWorks from './components/HowItWorks';
+import Footer from './components/Footer';
+
 const App = () => {
   return (
     <>
       {/* Include the Navbar component */}
       <Navbar />
+      <Footer />
 
       {/* Define application routes */}
       <Routes>
@@ -42,6 +49,12 @@ const App = () => {
 
         <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route path="/reset-password" element={<ResetPassword />} />
+
+
+        <Route path="/" element={<Hero />} />
+        <Route path="/highlights" element={<Highlights />} />
+        <Route path="/features" element={<Features />} />
+        <Route path="/how-it-works" element={<HowItWorks />} /> 
 
       </Routes>
     </>
